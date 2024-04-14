@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-volume-config
+  namespace: demo-app
+  labels:
+    app: nginx
+    env: demo
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+      env:
+        - name: DEMO_GREETING
+          value: "Hello from the environment"
+        - name: DEMO_FAREWELL
+          value: "Such a sweet sorrow"
+      ports:
+        - containerPort: 80
+      volumeMounts:
+        - name: nginx-config
+          mountPath: /etc/nginx/conf.d
+        - name: nginx-www
+          mountPath: /home
+  volumes:
+    - name: nginx-config
+      configMap:
+        name: nginx-config
+        items:
+          - key: my-site
+            path: my-site.conf
+    - name: nginx-www
+      configMap:
+        name: nginx-config
+        items:
+          - key: index
+            path: index.html
+
+  

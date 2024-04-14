@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx-svc
+  namespace: demo-app
+spec:
+  selector:
+    app: nginx
+    env: demo
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 80
