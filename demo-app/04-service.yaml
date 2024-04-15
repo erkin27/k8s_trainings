@@ -6,7 +6,7 @@ metadata:
 spec:
   selector:
     app: nginx
-    env: demo
+    env: demo-2
   ports:
     - protocol: TCP
       port: 8080
